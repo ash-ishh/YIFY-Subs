@@ -10,7 +10,7 @@ import os
 #To Make Directory Of Query
 def make_subs_dir(query):
     global subspath
-    subspath = "c:\subs\"+query+'\'
+    subspath = "c:\\subs\\"+query+'\\'
     if not os.path.exists(subspath):
         os.makedirs(subspath)
 
@@ -121,7 +121,7 @@ def main():
             break
     action = input("\n* Do you want to Quit? (y/n)\n>> ").lower()
     
-    if action == ('n' or 'no'):
+    if action == 'n':
         main()
     else:
         exit(0)
