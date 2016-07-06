@@ -10,7 +10,7 @@ import os
 #To Make Directory Of Query
 def make_subs_dir(query):
     global subspath
-    subspath = "c:\\subs\\"+query+'\\'
+    subspath = "/home/ash-ishh/subtitle/"+query+'/'
     if not os.path.exists(subspath):
         os.makedirs(subspath)
 
@@ -19,10 +19,11 @@ def make_subs_dir(query):
 def search_and_return_result(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.content,"html.parser")
+    print(soup.prettify)
 
-    titles = [title.get_text() for title in soup.find_all('span',{'class':'title'})]
+    titles = [title.get_text() for title in soup.find_all('h3',{'class':'media-heading','itemprop':'name'})]
     links = [link['href'] for link in soup.find_all('a') if 'imdb' in link['href']]
-    #eg : <span class="title" itemprop="name">Batman: Bad Blood</span>
+    #eg : <span class="mediaheading" itemprop="name">Batman: Bad Blood</span>
     return titles,links
 
 
